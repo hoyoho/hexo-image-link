@@ -20,3 +20,24 @@ hexo.extend.filter.register('before_post_render', function(data){
 
     return data;
 });
+
+hexo.extend.filter.register('before_post_render', function(data){
+
+    data.content = data.content.replace(/<img[\s]*src="([^\[\]]*)"[\s]*alt="([^\[\]]*)"[\s]*style="zoom:[\s]*([1-9][0-9]*)%;"[\s]*\/>/g,
+        function(match_str, path, label){
+            // if only one /
+            if( (path.split("/")).length == 2){
+                console.debug("Html Image Path: " + match_str);
+                console.debug("File Path: " + data.path + " " +
+                              "Matched Path: " + path + " " +
+                              "label: " + label);
+                return match_str.replace(path, "/" + data.path + label);
+            }else{
+                console.debug("Markdown Image Path does not exists!");
+                return match_str;
+            }
+
+        });
+
+    return data;
+});
