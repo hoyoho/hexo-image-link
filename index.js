@@ -23,7 +23,7 @@ hexo.extend.filter.register('before_post_render', function(data){
 
 hexo.extend.filter.register('before_post_render', function(data){
 
-    data.content = data.content.replace(/<img[\s]*src="([^\"\[\]]*)"[\s]*alt="([^\"\[\]]*)"[\s]*style="zoom:[\s]*([1-9][0-9]*)%;"[\s]*\/>/g,
+    data.content = data.content.replace(/<img\s+src\s*=\s*"([^"]*)"\s+alt\s*=\s*"([^"]*)"\s+style\s*=\s*"zoom\s*:\s*([1-9][0-9]*)%\s*;\s*"\s*\/>/g,
         function(match_str, path){
             // if only one /
             if( (path.split("/")).length == 2){
